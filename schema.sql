@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS yt_pro_sub;
-USE yt_pro_sub;
+-- REMOVED 'CREATE DATABASE' to allow installation on shared hosting (danas234_sub1)
+-- Run this SQL in phpMyAdmin or use install.php
 
 -- Table for Users (Channels)
 CREATE TABLE IF NOT EXISTS users (
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
     points INT DEFAULT 0,
     status ENUM('active', 'suspended') DEFAULT 'active',
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table to track who subscribed to whom (Transaction History)
 CREATE TABLE IF NOT EXISTS subscriptions (
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
     target_channel_id VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY unique_sub (subscriber_channel_id, target_channel_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table for Admin Help tickets
 CREATE TABLE IF NOT EXISTS admin_help (
@@ -27,4 +27,4 @@ CREATE TABLE IF NOT EXISTS admin_help (
     message TEXT NOT NULL,
     status ENUM('open', 'closed') DEFAULT 'open',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
